@@ -39,20 +39,11 @@
 //------------------------------------------------------------------------------------------------------------
 
 
+  // Прелоадер
   .preloader {
     @include flex.init( row, nowrap, center, center );
     @include transition.many( opacity visibility, $transition );
-    background: linear-gradient( 0deg, $color-1 $value-1, $color-2 $value-2, $color-3 $value-3 );
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;
-
-
-    // Наложение картинки сверху
-    &:before {
-      content: ''; position: absolute; top: 0; left: 0;
-      display: block; width: 100%; height: 100%;
-      background: scroll url( "../../images/patterns/main.png" ) center center repeat;
-      background-size: $background-size-x $background-size-y;
-    }
 
 
     // Вращающийся элемент
@@ -66,6 +57,21 @@
 
     // Скрытый прелоадер
     &.hidden { opacity: 0; visibility: hidden; }
+  }
+
+
+  // Главный блок приложения и прелоадер
+  #all-content {
+    background: linear-gradient( 0deg, $color-1 $value-1, $color-2 $value-2, $color-3 $value-3 );
+    position: relative; min-height: 100vh;
+
+    // Наложение картинки сверху
+    &:before {
+      content: ''; position: absolute; top: 0; left: 0;
+      display: block; width: 100%; height: 100%;
+      background: scroll url( "../../images/patterns/main.png" ) center center repeat;
+      background-size: $background-size-x $background-size-y;
+    }
   }
 
 

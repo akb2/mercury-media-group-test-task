@@ -1,4 +1,6 @@
-import './render.scss';
+import './styles.scss';
+
+import Offers from '../offers/scripts';
 
 
 
@@ -11,11 +13,12 @@ import './render.scss';
 
   const class_preloader = 'preloader';
   const class_preloader_elm = class_preloader + '__loader';
-  const id_preloader = 'main-preloader';
-
   const class_preloader_hidden = 'hidden';
 
-  const preloader_hide_delay = 0.5;
+  const id_preloader = 'main-preloader';
+  const id_content = 'all-content';
+
+  const preloader_hide_delay = 0;
 
 
 //------------------------------------------------------------------------------------------------------------
@@ -35,6 +38,7 @@ import './render.scss';
   $( window ).off( 'load.render' );
   $( window ).on( 'load.render', function ( event ) {
     setTimeout ( function ( event ) {
+      ReactDOM.render( <RenderPage />, $( '#' + id_content )[0] );
       hide_preloader ( event );
     }, ( preloader_hide_delay * 1000 ), event );
   });
@@ -67,4 +71,25 @@ import './render.scss';
 
 //------------------------------------------------------------------------------------------------------------
 // Функции
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Классы
+//------------------------------------------------------------------------------------------------------------
+
+
+  // Элемент списка
+  class RenderPage extends React.Component {
+    render () {
+      return <Offers />;
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Классы
 //------------------------------------------------------------------------------------------------------------
