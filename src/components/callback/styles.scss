@@ -1,0 +1,138 @@
+@use '../../styles/mixins/font';
+@use '../../styles/mixins/line';
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+  $padding-x: 48px;
+  $padding-y: 39px;
+  $background: #ef7d00;
+
+
+  $title-font-family: MarkerFelt;
+  $title-font-weight: 400;
+  $title-font-size: 60px;
+  $title-line-height: 72px;
+  $title-text-transform: uppercase;
+  $title-color: #fff;
+  $title-shadow-x: 1px;
+  $title-shadow-y: 2px;
+  $title-shadow-blur: 0px;
+  $title-shadow-color: #421d4b;
+
+
+  $desc-max-width: 75%;
+  $desc-spacing: 25px;
+  $desc-font-family: BebasNeue;
+  $desc-font-weight: bold;
+  $desc-font-size: 24px;
+  $desc-line-height: 30px;
+  $desc-text-transform: uppercase;
+  $desc-color: #fff;
+
+
+  $input-height: 60px;
+  $input-border: 2px;
+  $input-padding-x: 20px;
+  $input-font-family: BebasNeue;
+  $input-font-weight: bold;
+  $input-font-size: 24px;
+  $input-text-transform: uppercase;
+  $input-border-color: #fff;
+  $input-background: $background;
+  $input-color: #fff;
+
+
+  $button-height: 60px;
+  $button-padding-x: 20px;
+  $button-font-family: BebasNeue;
+  $button-font-weight: bold;
+  $button-font-size: 36px;
+  $button-text-transform: uppercase;
+  $button-background: #491f53;
+  $button-color: #fff;
+
+
+  @include font.include( $title-font-family, $title-font-weight );
+  @include font.include( $desc-font-family, $desc-font-weight );
+  @include font.include( $input-font-family, $input-font-weight );
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------
+
+
+  .callback {
+    padding: $padding-y $padding-x;
+    background-color: $background;
+
+
+    // Заголовок
+    &__title {
+      @include font.init( $title-font-family, $title-font-weight );
+      text-shadow: $title-shadow-x $title-shadow-y $title-shadow-blur $title-shadow-color;
+      text-transform: $title-text-transform;
+      line-height: $title-line-height;
+      font-size: $title-font-size;
+      color: $title-color;
+      text-align: center;
+    }
+
+    // Описание
+    &__desc {
+      @include font.init( $desc-font-family, $desc-font-weight );
+      text-transform: $desc-text-transform;
+      line-height: $desc-line-height;
+      max-width: $desc-max-width;
+      font-size: $desc-font-size;
+      margin: $desc-spacing auto 0 auto;
+      color: $desc-color;
+      text-align: center;
+    }
+
+    // Поле ввода
+    &__input {
+      @include font.init( $input-font-family, $input-font-weight );
+      line-height: $input-height - ( $input-border * 2 );
+      border: $input-border solid $input-border-color;
+      text-transform: $input-text-transform;
+      padding: 0 $input-padding-x;
+      font-size: $input-font-size;
+      height: $input-height;
+      background-color: $input-background;
+      display: block; width: 100%;
+      &, &::placeholder { color: $input-color; }
+    }
+
+    // Поле ввода
+    &__button {
+      @include font.init( $button-font-family, $button-font-weight );
+      @include line.clamp( 1, $button-height );
+      text-transform: $button-text-transform;
+      padding: 0 $button-padding-x;
+      font-size: $button-font-size;
+      background-color: $button-background;
+      color: $button-color;
+      display: block; width: 100%; text-align: center; cursor: pointer;
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,7 @@ import './styles.scss';
 
 import Offers from '../offers/scripts';
 import Test from '../test/scripts';
+import CallBack from '../callback/scripts';
 
 
 
@@ -90,6 +91,7 @@ import Test from '../test/scripts';
         <React.Fragment>
           <Offers />
           <Test />
+          <CallBack />
         </React.Fragment>
       );
     }

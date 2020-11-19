@@ -57,7 +57,7 @@ import HedgehogAva from '../../images/misc/hedgehog.png';
 
       return (
         <section className="section">
-          <div className="container container_large">
+          <div className="container container_large ignore-spacing">
             <div className={ class_base }>
               <TestDesc />
               <div className={ class_form } id={ id }>

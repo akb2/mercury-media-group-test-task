@@ -30,8 +30,8 @@
 
       // Общие отступы
       default: (
-        large: 50px,
-        medium: 50px,
+        large: 60px,
+        medium: 60px,
         middle: 30px,
         default: 15px,
       ),
@@ -131,6 +131,14 @@
           }
         }
       }
+    }
+  }
+
+
+  // Убрать отступы между секциями
+  .section, header {
+    & + .section:not( .ignore-spacing ) {
+      & > .container:not( .ignore-spacing ) { padding-top: 0; }
     }
   }
 
