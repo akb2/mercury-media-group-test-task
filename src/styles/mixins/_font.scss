@@ -13,6 +13,20 @@
 
 
   $font-files: (
+
+    MarkerFelt: (
+      default: ( 'MarkerFelt-Thin', 'eot', 'svg' ),
+      '400-normal': ( 'MarkerFelt-Wide', 'eot', 'svg', 'ttf' )
+    ),
+
+    BebasNeue: (
+      default: ( 'BebasNeueRegular', 'otf', 'eot', 'ttf', 'woff' )
+    ),
+
+    DinCondensed: (
+      default: ( 'Regular', 'otf' ),
+      '700-normal': ( 'Bold', 'otf' )
+    )
   );
 
 
@@ -91,6 +105,8 @@
       'woff': 'woff',
       'woff2': 'woff2',
       'ttf': 'truetype',
+      'ttc': 'truetype',
+      'svg': 'svg'
     );
 
 
@@ -107,6 +123,8 @@
       'woff': 'woff',
       'woff2': 'woff2',
       'ttf': 'ttf',
+      'ttc': 'ttc',
+      'svg': 'svg'
     );
 
 
@@ -159,7 +177,8 @@
 
 
 
-      @if ( _maps.length( $__data ) > 0 ) {
+      $__size: list.length( $__data );
+      @if ( $__size > 0 ) {
         @font-face {
           font-family: #{ $family };
 
@@ -169,14 +188,14 @@
           @if ( $__use_style )
             { font-style: #{ $style }; }
 
-          @for $i from 1 through list.length( $__data ) {
+          @for $i from 1 through $__size {
             @if ( $i > 1 ) {
               $__ext: get-ext( _maps.get( $__data, $i ));
               $__format: get-type( $__ext );
               $__format_str: '';
-              @if ( string.length( $__format ) > 0 ) { $__format_str: format('#{ $__format }'); }
+              @if ( string.length( $__format ) > 0 ) { $__format_str: format( '#{ $__format }' ); }
 
-              src: url( '../fonts/' + $family + '/' + $__file + '.' + $__ext ) #{$__format_str};
+              src: url( '../../fonts/' + $family + '/' + $__file + '.' + $__ext ) #{ $__format_str };
             }
           }
         }

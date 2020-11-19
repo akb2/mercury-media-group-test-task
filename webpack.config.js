@@ -130,7 +130,7 @@ module.exports = ( env, option ) => {
                         esModule: false
                     }
                 }, {
-                    test: /\.(otf|ttf|eot|woff)?$/,
+                    test: /\.(otf|eot|woff|woff2|ttf|ttc|svg)?$/,
                     include: path.join( __dirname, config.folders.input.fonts ),
                     loader: 'file-loader',
                     options: {

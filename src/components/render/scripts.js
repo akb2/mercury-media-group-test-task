@@ -1,6 +1,7 @@
 import './styles.scss';
 
 import Offers from '../offers/scripts';
+import Test from '../test/scripts';
 
 
 
@@ -85,7 +86,12 @@ import Offers from '../offers/scripts';
   // Элемент списка
   class RenderPage extends React.Component {
     render () {
-      return <Offers />;
+      return (
+        <React.Fragment>
+          <Offers />
+          <Test />
+        </React.Fragment>
+      );
     }
   }
 

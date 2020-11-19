@@ -1,0 +1,109 @@
+@use '../../styles/mixins/flex';
+@use '../../styles/mixins/font';
+@use '../../styles/mixins/line';
+@use '../../styles/mixins/transition';
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+  $size: 29px;
+  $border: 2px;
+  $spacing: 22px;
+  $transition: .5s;
+
+  $check-width: 21px;
+  $check-height: 14px;
+  $check-border: 1px;
+  $check-skew: -15deg;
+  $check-shift-x: 1px;
+  $check-shift-y: -4px;
+
+
+  $text-spacing: 22px;
+  $text-lines: 2;
+  $text-font-family: DinCondensed;
+  $text-font-weight: bold;
+  $text-font-size: 18px;
+  $text-line-height: 24px;
+  $text-color: #fff;
+
+
+  $color-border: #fff;
+  $color-check-border: $color-border;
+
+
+
+  @include font.include( $text-font-family, $text-font-weight );
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------
+
+
+  .radio {
+    $__selector: &;
+    @include flex.init( row, nowrap, space-between, center );
+    position: relative;
+
+
+    &__input { display: none; }
+
+    &__helper {
+      @include line.select( none );
+      width: $size; height: $size;
+      border: $border solid $color-border;
+      display: block; cursor: pointer;
+
+      &:before {
+        @include transition.many( opacity visibility, $transition );
+        width: $check-width;
+        height: $check-height;
+        border: 0 solid $color-check-border;
+        border-width: 0 0 $check-border $check-border;
+        top: ( $size - ( $check-border * 2 ) - $check-height ) / 2;
+        left: ( $size - ( $check-border * 2 ) - $check-width ) / 2;
+        transform: rotate( -45deg + $check-skew ) skewX( $check-skew );
+        margin-left: $check-shift-x;
+        margin-top: $check-shift-y;
+        content: ''; display: block; position: absolute; opacity: 0; visibility: hidden;
+      }
+    }
+
+    &__text {
+      @include font.init( $text-font-family, $text-font-weight );
+      @include line.clamp( $text-lines, $text-line-height );
+      @include line.select( none );
+      width: calc( 100% - #{ $size + $text-spacing });
+      font-size: $text-font-size;
+      color: $text-color;
+      text-align: left; cursor: pointer;
+    }
+
+
+    // Выбранный элемент
+    input[type="radio"]:checked {
+      & + #{ $__selector } {
+        &__helper:before { opacity: 1; visibility: visible; }
+      }
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------

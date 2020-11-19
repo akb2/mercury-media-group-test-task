@@ -13,7 +13,7 @@
   $background-size-x: 217px;
   $background-size-y: 82px;
   $value-1: 0%;
-  $value-2: 1050px;
+  $value-2: 1850px;
   $value-3: $value-2;
   $color-1: #ff8200;
   $color-2: #ffe631;
@@ -62,7 +62,7 @@
 
   // Главный блок приложения и прелоадер
   #all-content {
-    background: linear-gradient( 0deg, $color-1 $value-1, $color-2 $value-2, $color-3 $value-3 );
+    background: linear-gradient( 180deg, $color-1 $value-1, $color-2 $value-2, $color-3 $value-3 ) left top repeat;
     position: relative; min-height: 100vh;
 
     // Наложение картинки сверху

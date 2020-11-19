@@ -1,3 +1,10 @@
+@use 'sass:map';
+@use 'sass:list';
+
+
+
+
+
 //----------------------------------------------------------------------------------------------------------------------------------------
 // Функции
 //----------------------------------------------------------------------------------------------------------------------------------------
@@ -12,15 +19,19 @@
 
       // Элемент является мэпом
       @if ( type-of($ret) == map ) {
-        @if ( map-get( $ret, $key ))
-          { $ret: map-get( $ret, $key ); }
+        @if ( map.get( $ret, $key ))
+          { $ret: map.get( $ret, $key ); }
         @else
-          { $ret: map-get( $ret, default ); }
+          { $ret: map.get( $ret, default ); }
       }
 
       // Элемент является списком
-      @else if ( type-of($ret) == list )
-        { $ret: nth( $ret, $key ); }
+      @else if ( type-of($ret) == list ) {
+        @if ( list.nth( $ret, $key ))
+          { $ret: list.nth( $ret, $key ); }
+        @else
+          { $ret: null; }
+      }
 
       // Элемент не массив
       @else
@@ -41,18 +52,18 @@
 
       // Элемент является мэпом
       @if ( type-of($_temp) == map ) {
-        @if ( map-has-key( $_temp, $key ) )
-          { $_temp: map-get( $_temp, $key ); }
+        @if ( map.has-key( $_temp, $key ) )
+          { $_temp: map.get( $_temp, $key ); }
         @else
           { @return false; }
       }
 
       // Элемент является списком
       @else if ( type-of($_temp) == list ) {
-        @if ( index( $_temp, $key ) != null )
-          { $_temp: nth( $_temp, $key ); }
+        @if ( list.nth( $_temp, $key ))
+          { $_temp: list.nth( $_temp, $key ); }
         @else
-          { @return false; }
+          { $_temp: null; }
       }
 
       @else
@@ -65,7 +76,7 @@
 
 
   // Получение данных
-  @function length ( $map, $keys... ) {
+  @function size ( $map, $keys... ) {
     $__map: get( $map, $keys );
     $__ret: 0;
 
