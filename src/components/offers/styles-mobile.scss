@@ -1,0 +1,189 @@
+@use '../../styles/settings/screens';
+
+@use '../../styles/mixins/flex';
+@use '../../styles/mixins/line';
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+  $count: 1;
+  $width: 100% / $count;
+  $height: 260px;
+
+  $logo-width: 160px;
+
+  $icon-size: 70px;
+
+  $sup-line-height: 8px;
+  $sup-font-size: 8px;
+
+  $title-spacing: 15px;
+  $title-font-size: 32px;
+  $title-line-height: 40px;
+
+  $desc-spacing: 0px;
+  $desc-font-size: 20px;
+  $desc-line-height: 28px;
+
+
+
+  $first-title-spacing: 20px;
+  $first-title-font-size: 36px;
+  $first-title-line-height: 48px;
+
+  $first-subtitle-spacing: 0px;
+  $first-subtitle-font-size: 42px;
+  $first-subtitle-line-height: 54px;
+
+  $first-date-spacing: 20px;
+  $first-date-font-size: 22px;
+  $first-date-line-height: 30px;
+
+
+
+  $offer-padding: 20px;
+  $offer-padding-inner: $offer-padding;
+
+  $offer-image-width: 96px;
+  $offer-image-spacing: 15px;
+  $offer-image-left-spacing: 0;
+  $offer-image-right-spacing: 0;
+
+  $offer-title-left-width: calc( 100% - #{ $offer-image-width + $offer-image-spacing + $offer-image-left-spacing });
+  $offer-title-right-width: calc( 100% - #{ $offer-image-width + $offer-image-spacing + $offer-image-right-spacing });
+
+  $offer-title-font-size: 28px;
+  $offer-title-line-height: 36px;
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Для телефона
+//------------------------------------------------------------------------------------------------------------
+
+
+  @media screen and ( max-width: #{ screens.$mobile_resolution }px ) {
+    .offers {
+
+      // Элемент списка
+      &__item {
+        $__selector: &;
+
+        @include flex.width( $width );
+        padding-bottom: $height;
+
+
+        // Иконка
+        &-icon { width: $icon-size; height: $icon-size; }
+
+        // Заголовок
+        &-title {
+          line-height: $title-line-height;
+          font-size: $title-font-size;
+          margin-top: $title-spacing;
+
+          & > .sup {
+            @include line.clamp( 1, ( $sup-line-height ));
+            font-size: $sup-font-size;
+          }
+        }
+
+        // Описание
+        &-desc {
+          line-height: $desc-line-height;
+          font-size: $desc-font-size;
+          margin-top: $desc-spacing;
+
+          & > .sup {
+            @include line.clamp( 1, ( $sup-line-height ));
+            font-size: $sup-font-size;
+          }
+        }
+
+
+
+        // Статусы
+        & {
+
+          // Главный блок
+          &.first {
+            #{ $__selector } {
+
+              // Логотип
+              &-logo { width: $logo-width; }
+
+              // Заголовок
+              &-title {
+                line-height: $first-title-line-height;
+                font-size: $first-title-font-size;
+                margin-top: $first-title-spacing;
+              }
+
+              // Подзаголовок
+              &-subtitle {
+                line-height: $first-subtitle-line-height;
+                font-size: $first-subtitle-font-size;
+                margin-top: $first-subtitle-spacing;
+              }
+
+              // Подзаголовок
+              &-date {
+                line-height: $first-date-line-height;
+                font-size: $first-date-font-size;
+                margin-top: $first-date-spacing;
+              }
+            }
+          }
+
+          // Предложение
+          &.offer {
+
+            &_left, &_right {
+              #{ $__selector } {
+                &-title {
+                  line-height: $offer-title-line-height;
+                  font-size: $offer-title-font-size;
+                }
+                &-container { padding: $offer-padding; }
+                &-image { width: $offer-image-width; }
+              }
+            }
+
+            &_left {
+              #{ $__selector } {
+                &-container { padding-right: $offer-padding-inner; }
+                &-image { margin-left: $offer-image-left-spacing; }
+                &-title { width: $offer-title-left-width; }
+              }
+            }
+
+            &_right {
+              #{ $__selector } {
+                &-container { padding-left: $offer-padding-inner; }
+                &-image { margin-right: $offer-image-right-spacing; }
+                &-title { width: $offer-title-right-width; }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Для телефона
+//------------------------------------------------------------------------------------------------------------

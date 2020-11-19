@@ -1,0 +1,120 @@
+@use '../../styles/settings/screens';
+
+@use '../../styles/mixins/flex';
+@use '../../styles/mixins/line';
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+  $desc-spacing-top: 20px;
+
+
+
+  $desc-title-font-size: 42px;
+  $desc-title-line-height: 56px;
+
+
+
+  $form-padding-x: 15px;
+  $form-padding-y: 15px;
+
+  $form-title-font-size: 24px;
+  $form-title-line-height: 32px;
+
+  $form-answers-spacing: 30px;
+  $form-buttons-spacing: 40px;
+
+  $form-button-font-size: 28px;
+  $form-button-line-height: 44px;
+  $form-button-height: 60px;
+  $form-button-padding-x: 60px;
+  $form-button-padding-y: ( $form-button-height - $form-button-line-height ) / 2;
+
+
+
+  $result-spacing: 20px;
+  $result-font-size: 18px;
+  $result-line-height: 26px;
+  $result-image-size: 100%;
+  $result-image-spacing: 20px;
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Для телефона
+//------------------------------------------------------------------------------------------------------------
+
+
+  @media screen and ( max-width: #{ screens.$tablet_resolution }px ) {
+    .test {
+      @include flex.init( column, nowrap, flex-start, flex-start );
+
+      &__desc {
+        width: 100%; padding-right: 0;
+
+        &-title, &-desc { text-align: left; }
+        &-title {
+          font-size: $desc-title-font-size;
+          line-height: $desc-title-line-height;
+        }
+      }
+
+      &__form {
+        margin-top: $desc-spacing-top;
+        padding: $form-padding-y $form-padding-x;
+        width: 100%;
+
+        // Заголовок ( вопрос )
+        &-title {
+          line-height: $form-title-line-height;
+          font-size: $form-title-font-size;
+        }
+
+        // Список ответов
+        &-answers { margin-top: $form-answers-spacing; }
+
+        // Контейнер для кнопок
+        &-buttons {
+          margin-top: $form-buttons-spacing;
+          text-align: right;
+
+          &-button {
+            @include line.clamp( 1, $form-button-line-height, $form-button-padding-y );
+            padding-right: $form-button-padding-x;
+            padding-left: $form-button-padding-x;
+            font-size: $form-button-font-size;
+          }
+        }
+
+
+        // Результ тестирования
+        &-results {
+          @include flex.init( row, nowrap, flex-start, flex-start );
+          margin-top: $result-spacing;
+
+          &-text {
+            line-height: $result-line-height;
+            font-size: $result-font-size;
+          }
+        }
+      }
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Для телефона
+//------------------------------------------------------------------------------------------------------------

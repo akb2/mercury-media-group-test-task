@@ -1,0 +1,88 @@
+@use '../../styles/mixins/line';
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+  $padding-x: 15px;
+  $padding-y: 15px;
+
+
+  $title-font-size: 32px;
+  $title-line-height: 40px;
+
+
+  $desc-max-width: 100%;
+  $desc-spacing: 20px;
+  $desc-font-size: 18px;
+  $desc-line-height: 26px;
+
+
+  $input-height: 60px;
+  $input-border: 2px;
+  $input-padding-x: 20px;
+  $input-font-size: 24px;
+
+
+  $button-height: 60px;
+  $button-padding-x: 20px;
+  $button-font-size: 28px;
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------
+
+
+  .callback {
+    padding: $padding-y $padding-x;
+
+
+    // Заголовок
+    &__title {
+      line-height: $title-line-height;
+      font-size: $title-font-size;
+    }
+
+    // Описание
+    &__desc {
+      line-height: $desc-line-height;
+      max-width: $desc-max-width;
+      font-size: $desc-font-size;
+      margin: $desc-spacing auto 0 auto;
+    }
+
+    // Поле ввода
+    &__input {
+      line-height: $input-height - ( $input-border * 2 );
+      border-width: $input-border;
+      padding: 0 $input-padding-x;
+      font-size: $input-font-size;
+      height: $input-height;
+    }
+
+    // Поле ввода
+    &__button {
+      @include line.clamp( 1, $button-height );
+      padding: 0 $button-padding-x;
+      font-size: $button-font-size;
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------

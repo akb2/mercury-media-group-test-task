@@ -13,26 +13,27 @@
   // Контрольные точки
   $breakpoints: (
     maximal: 10000,
-    large: 1800,
-    medium: 1200,
-    middle: 900,
-    small: 600,
+    desktop: 1200,
+    tablet: 950,
+    mobile: 700,
     all: 0,
   );
 
 
   // Сортировка контрольных точек
   $breakpoints-sort: (
-    default: ( maximal, large, medium, middle, small, all ),
-    to-min: ( all, small, middle, medium, large, maximal ),
+    default: ( maximal, desktop, tablet, mobile, all ),
+    to-min: ( all, mobile, tablet, desktop, maximal ),
   );
 
 
   // Где начинается мобайл
-  $mobile: middle;
-  $tablet: medium;
+  $mobile: mobile;
+  $tablet: tablet;
+  $desktop: desktop;
   $mobile_resolution: _maps.get( $breakpoints, $mobile );
   $tablet_resolution: _maps.get( $breakpoints, $tablet );
+  $desktop_resolution: _maps.get( $breakpoints, $desktop );
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------

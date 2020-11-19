@@ -2,7 +2,6 @@
 
 @use '../mixins/box-sizing' as *;
 @use '../mixins/flex';
-@use '../mixins/font';
 
 
 
@@ -15,11 +14,6 @@
 
   $font-size: 13px;
   $line-height: 16px;
-  $font-family: Exo20;
-  $font-weight: 100;
-
-
-  @include font.include( $font-family, $font-weight );
 
 
 //----------------------------------------------------------------------------------------------------------------------------------------
@@ -41,7 +35,6 @@
       outline: none; margin: 0; padding: 0; z-index: 1;
     }
 
-    @include font.init( $font-family, $font-weight );
     font-size: $font-size;
     line-height: $line-height;
   }

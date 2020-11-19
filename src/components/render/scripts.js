@@ -3,6 +3,7 @@ import './styles.scss';
 import Offers from '../offers/scripts';
 import Test from '../test/scripts';
 import CallBack from '../callback/scripts';
+import Footer from '../footer/scripts';
 
 
 
@@ -43,6 +44,16 @@ import CallBack from '../callback/scripts';
       ReactDOM.render( <RenderPage />, $( '#' + id_content )[0] );
       hide_preloader ( event );
     }, ( preloader_hide_delay * 1000 ), event );
+  });
+
+
+  // Скролл экрана
+  $( document ).off( 'scroll.render' );
+  $( document ).on( 'scroll.render', function ( event ) {
+    const scroll = $( this ).scrollLeft();
+
+    if ( scroll > 0 )
+      { $( this ).scrollLeft( 0 ); }
   });
 
 
@@ -92,6 +103,7 @@ import CallBack from '../callback/scripts';
           <Offers />
           <Test />
           <CallBack />
+          <Footer />
         </React.Fragment>
       );
     }

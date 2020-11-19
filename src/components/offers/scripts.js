@@ -1,4 +1,6 @@
 import './styles.scss';
+import './styles-mobile.scss';
+import './styles-tablet.scss';
 
 import MainLogo from "../../images/logos/main.png";
 import GiftCardIcon from "../../images/icons/gift-card.png";

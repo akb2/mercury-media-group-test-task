@@ -1,0 +1,74 @@
+@use '../../styles/mixins/font';
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+  $title-font-family: BebasNeue;
+  $title-font-weight: bold;
+  $title-font-size: 24px;
+  $title-line-height: 30px;
+  $title-text-transform: uppercase;
+  $title-color: #211e1f;
+  $title-span-color: #e61729;
+
+
+  $text-spacing: 10px;
+  $text-font-family: DinCondensed;
+  $text-font-weight: bold;
+  $text-font-size: 14px;
+  $text-line-height: 15px;
+  $text-color: #211e1f;
+
+
+  @include font.include( $title-font-family, $title-font-weight );
+  @include font.include( $text-font-family, $text-font-weight );
+
+
+//------------------------------------------------------------------------------------------------------------
+// Данные
+//------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------
+
+
+  .footer {
+
+    &__title {
+      color: $title-color;
+      text-align: center;
+
+      & > span { color: $title-span-color; display: inline-block; }
+      &, & > span {
+        @include font.init( $title-font-family, $title-font-weight );
+        text-transform: $title-text-transform;
+        line-height: $title-line-height;
+        font-size: $title-font-size;
+      }
+    }
+
+    &__text {
+      @include font.init( $text-font-family, $text-font-weight );
+      margin-top: $text-spacing;
+      line-height: $text-line-height;
+      font-size: $text-font-size;
+      color: $text-color;
+      text-align: center;
+    }
+  }
+
+
+//------------------------------------------------------------------------------------------------------------
+// Стили
+//------------------------------------------------------------------------------------------------------------

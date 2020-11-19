@@ -18,22 +18,16 @@
 
   $settings: (
     padding-horizontal: (
-      default: 15px,
-      large: _maps.get( bootstrap.$settings, spacing ),
-      medium: _maps.get( bootstrap.$settings, spacing ),
-      middle: 15px,
-      small: 15px,
-      all: 15px,
+      default: _maps.get( bootstrap.$settings, spacing ),
     ),
 
     padding-verticals: (
 
       // Общие отступы
       default: (
-        large: 60px,
-        medium: 60px,
-        middle: 30px,
-        default: 15px,
+        tablet: 60px,
+        mobile: 30px,
+        default: _maps.get( bootstrap.$settings, spacing ),
       ),
 
       // Без отступов
@@ -44,13 +38,15 @@
       // Без отступов
       large: (
         default: 95px,
+        all: 30px,
       )
     ),
 
     width: (
       default: 1200px,
-      middle: 900px,
-      small: 600px,
+      desktop: 1170px,
+      tablet: 920px,
+      mobile: 670px,
       all: 100%,
     )
   );

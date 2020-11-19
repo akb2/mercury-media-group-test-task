@@ -1,4 +1,5 @@
 import './styles.scss';
+import './styles-mobile.scss';
 
 
 
@@ -43,13 +44,13 @@ import './styles.scss';
                 оценить значение новых предложений.
               </div>
               <div className="row inner-spacing">
-                <div className="col-4">
+                <div className="col-11 col-tablet-6 col-desktop-4">
                   <input className={ class_input } type="text" name="name" placeholder="Имя"/>
                 </div>
-                <div className="col-4">
+                <div className="col-11 col-tablet-5 col-desktop-4 mt-3 mt-tablet-0">
                   <input className={ class_input } type="text" name="email" placeholder="E-mail"/>
                 </div>
-                <div className="col-3">
+                <div className="col-11 col-tablet-5 col-desktop-3 mt-3 mt-desktop-0 offset-tablet-6 offset-desktop-0">
                   <span className={ class_button }>Подписаться</span>
                 </div>
               </div>
