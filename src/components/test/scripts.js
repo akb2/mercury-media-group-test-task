@@ -1,6 +1,6 @@
 import './styles.scss';
-import './styles-mobile.scss';
 import './styles-tablet.scss';
+import './styles-mobile.scss';
 
 import Radio from '../radio/scripts';
 import HedgehogAva from '../../images/misc/hedgehog.png';

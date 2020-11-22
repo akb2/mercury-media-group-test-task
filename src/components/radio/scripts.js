@@ -1,6 +1,6 @@
 import './styles.scss';
-import './styles-mobile.scss';
 import './styles-tablet.scss';
+import './styles-mobile.scss';
 
 
 
