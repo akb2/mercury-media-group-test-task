@@ -1,311 +1,321 @@
-@use '../../styles/mixins/flex';
-@use '../../styles/mixins/font';
-@use '../../styles/mixins/line';
-@use '../../styles/mixins/background';
+@use "sass:math";
+@use "../../styles/mixins/flex";
+@use "../../styles/mixins/font";
+@use "../../styles/mixins/line";
+@use "../../styles/mixins/background";
+@use "../render/styles" as render;
 
-@use '../render/styles' as render;
+$count: 3;
+$width: math.div(100%, $count);
 
+$background-transparent: transparent;
+$background-pink: #e8335e;
+$background-green: #a8c514;
+$background-purple: #491f53;
+$background-orange: #ef7d00;
+$background-size-x: render.$background-size-x;
+$background-size-y: render.$background-size-y;
 
+$logo-width: 198px;
 
+$icon-size: 91px;
 
+$image-size: 78%;
 
-//------------------------------------------------------------------------------------------------------------
-// Данные
-//------------------------------------------------------------------------------------------------------------
+$sup-line-height: 15px;
+$sup-font-size: 15px;
 
+$title-spacing: 20px;
+$title-font-family: BebasNeue;
+$title-font-weight: bold;
+$title-font-size: 48px;
+$title-line-height: 57px;
+$title-text-transform: uppercase;
+$title-color: #fff;
 
-  $count: 3;
-  $width: 100% / $count;
+$desc-spacing: -8px;
+$desc-font-family: BebasNeue;
+$desc-font-weight: bold;
+$desc-font-size: 24px;
+$desc-line-height: 32px;
+$desc-text-transform: uppercase;
+$desc-color: #fff;
 
-  $background-transparent: transparent;
-  $background-pink: #e8335e;
-  $background-green: #a8c514;
-  $background-purple: #491f53;
-  $background-orange: #ef7d00;
-  $background-size-x: render.$background-size-x;
-  $background-size-y: render.$background-size-y;
+$first-title-spacing: 20px;
+$first-title-font-family: MarkerFelt;
+$first-title-font-weight: 400;
+$first-title-font-size: 60px;
+$first-title-line-height: 104px;
+$first-title-text-transform: uppercase;
+$first-title-color: #fff;
+$first-title-shadow-x: 1px;
+$first-title-shadow-y: 2px;
+$first-title-shadow-blur: 0px;
+$first-title-shadow-color: #421d4b;
 
-  $logo-width: 198px;
+$first-subtitle-spacing: 0px;
+$first-subtitle-font-family: $first-title-font-family;
+$first-subtitle-font-weight: $first-title-font-weight;
+$first-subtitle-font-size: 90px;
+$first-subtitle-line-height: 95px;
+$first-subtitle-text-transform: $first-title-text-transform;
+$first-subtitle-color: $first-title-color;
+$first-subtitle-shadow-x: $first-title-shadow-x;
+$first-subtitle-shadow-y: $first-title-shadow-y;
+$first-subtitle-shadow-blur: $first-title-shadow-blur;
+$first-subtitle-shadow-color: $first-title-shadow-color;
 
-  $icon-size: 91px;
+$first-date-spacing: 22px;
+$first-date-font-family: BebasNeue;
+$first-date-font-weight: bold;
+$first-date-font-size: 30px;
+$first-date-line-height: 38px;
+$first-date-text-transform: uppercase;
+$first-date-color: #fff;
 
-  $image-size: 78%;
+$offer-padding: 40px;
+$offer-padding-inner: math.div($offer-padding, 2);
 
-  $sup-line-height: 15px;
-  $sup-font-size: 15px;
+$offer-image-width: 128px;
+$offer-image-spacing: 23px;
+$offer-image-left-spacing: -15px;
+$offer-image-right-spacing: -29px;
 
-  $title-spacing: 20px;
-  $title-font-family: BebasNeue;
-  $title-font-weight: bold;
-  $title-font-size: 48px;
-  $title-line-height: 57px;
-  $title-text-transform: uppercase;
-  $title-color: #fff;
+$offer-title-left-width: calc(100% - #{$offer-image-width + $offer-image-spacing + $offer-image-left-spacing});
+$offer-title-right-width: calc(100% - #{$offer-image-width + $offer-image-spacing + $offer-image-right-spacing});
 
-  $desc-spacing: -8px;
-  $desc-font-family: BebasNeue;
-  $desc-font-weight: bold;
-  $desc-font-size: 24px;
-  $desc-line-height: 32px;
-  $desc-text-transform: uppercase;
-  $desc-color: #fff;
+$offer-title-font-family: BebasNeue;
+$offer-title-font-weight: bold;
+$offer-title-font-size: 36px;
+$offer-title-line-height: 43px;
+$offer-title-text-transform: uppercase;
+$offer-title-color: #fff;
 
+@include font.include($title-font-family, $title-font-weight);
+@include font.include($first-title-font-family, $first-title-font-weight);
+@include font.include($first-subtitle-font-family, $first-subtitle-font-weight);
+@include font.include($first-date-font-family, $first-date-font-weight);
+@include font.include($offer-title-font-family, $offer-title-font-weight);
 
+// Прелоадер
+.offers {
+  @include flex.init(row, wrap, flex-start, stretch);
 
-  $first-title-spacing: 20px;
-  $first-title-font-family: MarkerFelt;
-  $first-title-font-weight: 400;
-  $first-title-font-size: 60px;
-  $first-title-line-height: 104px;
-  $first-title-text-transform: uppercase;
-  $first-title-color: #fff;
-  $first-title-shadow-x: 1px;
-  $first-title-shadow-y: 2px;
-  $first-title-shadow-blur: 0px;
-  $first-title-shadow-color: #421d4b;
+  // Элемент списка
+  &__item {
+    $__selector: &;
 
-  $first-subtitle-spacing: 0px;
-  $first-subtitle-font-family: $first-title-font-family;
-  $first-subtitle-font-weight: $first-title-font-weight;
-  $first-subtitle-font-size: 90px;
-  $first-subtitle-line-height: 95px;
-  $first-subtitle-text-transform: $first-title-text-transform;
-  $first-subtitle-color: $first-title-color;
-  $first-subtitle-shadow-x: $first-title-shadow-x;
-  $first-subtitle-shadow-y: $first-title-shadow-y;
-  $first-subtitle-shadow-blur: $first-title-shadow-blur;
-  $first-subtitle-shadow-color: $first-title-shadow-color;
+    @include flex.width($width);
+    padding-bottom: $width;
+    position: relative;
 
-  $first-date-spacing: 22px;
-  $first-date-font-family: BebasNeue;
-  $first-date-font-weight: bold;
-  $first-date-font-size: 30px;
-  $first-date-line-height: 38px;
-  $first-date-text-transform: uppercase;
-  $first-date-color: #fff;
+    // Наложение картинки сверху
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: scroll url("../../images/patterns/main.png") center center repeat;
+      background-size: $background-size-x $background-size-y;
+    }
 
+    // Контейнер для данных
+    &-container {
+      @include flex.init(column, nowrap, center, center);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
+    // Иконка
+    &-icon {
+      @include background.init;
+      @include background.size(contain);
+      width: $icon-size;
+      height: $icon-size;
+    }
 
-  $offer-padding: 40px;
-  $offer-padding-inner: $offer-padding / 2;
+    // Заголовок
+    &-title {
+      @include font.init($title-font-family, $title-font-weight);
+      text-transform: $title-text-transform;
+      line-height: $title-line-height;
+      font-size: $title-font-size;
+      margin-top: $title-spacing;
+      color: $title-color;
+      text-align: center;
 
-  $offer-image-width: 128px;
-  $offer-image-spacing: 23px;
-  $offer-image-left-spacing: -15px;
-  $offer-image-right-spacing: -29px;
-
-  $offer-title-left-width: calc( 100% - #{ $offer-image-width + $offer-image-spacing + $offer-image-left-spacing });
-  $offer-title-right-width: calc( 100% - #{ $offer-image-width + $offer-image-spacing + $offer-image-right-spacing });
-
-  $offer-title-font-family: BebasNeue;
-  $offer-title-font-weight: bold;
-  $offer-title-font-size: 36px;
-  $offer-title-line-height: 43px;
-  $offer-title-text-transform: uppercase;
-  $offer-title-color: #fff;
-
-
-
-  @include font.include( $title-font-family, $title-font-weight );
-  @include font.include( $first-title-font-family, $first-title-font-weight );
-  @include font.include( $first-subtitle-font-family, $first-subtitle-font-weight );
-  @include font.include( $first-date-font-family, $first-date-font-weight );
-  @include font.include( $offer-title-font-family, $offer-title-font-weight );
-
-
-//------------------------------------------------------------------------------------------------------------
-// Данные
-//------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-//------------------------------------------------------------------------------------------------------------
-// Стили
-//------------------------------------------------------------------------------------------------------------
-
-
-  // Прелоадер
-  .offers {
-    @include flex.init( row, wrap, flex-start, stretch );
-
-    // Элемент списка
-    &__item {
-      $__selector: &;
-
-      @include flex.width( $width );
-      padding-bottom: $width;
-      position: relative;
-
-      // Наложение картинки сверху
-      &:before {
-        content: ''; position: absolute; top: 0; left: 0;
-        display: block; width: 100%; height: 100%;
-        background: scroll url( "../../images/patterns/main.png" ) center center repeat;
-        background-size: $background-size-x $background-size-y;
+      & > .sup {
+        @include line.clamp(1, ($sup-line-height));
+        font-size: $sup-font-size;
+        display: inline-block;
+        vertical-align: top;
       }
+    }
 
+    // Описание
+    &-desc {
+      @include font.init($desc-font-family, $desc-font-weight);
+      text-transform: $desc-text-transform;
+      line-height: $desc-line-height;
+      font-size: $desc-font-size;
+      margin-top: $desc-spacing;
+      color: $desc-color;
+      text-align: center;
 
-      // Контейнер для данных
-      &-container {
-        @include flex.init( column, nowrap, center, center );
-        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      & > .sup {
+        @include line.clamp(1, ($sup-line-height));
+        font-size: $sup-font-size;
+        display: inline-block;
+        vertical-align: top;
       }
+    }
 
-      // Иконка
-      &-icon {
-        @include background.init;
-        @include background.size( contain );
-        width: $icon-size; height: $icon-size;
-      }
+    // Статусы
+    & {
+      // Главный блок
+      &.first {
+        #{ $__selector } {
+          // Контейнер
+          &-container {
+            @include flex.init(column, nowrap, center, flex-start);
+          }
 
-      // Заголовок
-      &-title {
-        @include font.init( $title-font-family, $title-font-weight );
-        text-transform: $title-text-transform;
-        line-height: $title-line-height;
-        font-size: $title-font-size;
-        margin-top: $title-spacing;
-        color: $title-color;
-        text-align: center;
+          // Логотип
+          &-logo {
+            width: $logo-width;
+          }
 
-        & > .sup {
-          @include line.clamp( 1, ( $sup-line-height ));
-          font-size: $sup-font-size;
-          display: inline-block; vertical-align: top;
+          // Заголовок
+          &-title {
+            @include font.init($first-title-font-family, $first-title-font-weight);
+            text-shadow: $first-title-shadow-x $first-title-shadow-y $first-title-shadow-blur $first-title-shadow-color;
+            text-transform: $first-title-text-transform;
+            line-height: $first-title-line-height;
+            font-size: $first-title-font-size;
+            margin-top: $first-title-spacing;
+            color: $first-title-color;
+          }
+
+          // Подзаголовок
+          &-subtitle {
+            @include font.init($first-subtitle-font-family, $first-subtitle-font-weight);
+            text-shadow: $first-subtitle-shadow-x $first-subtitle-shadow-y $first-subtitle-shadow-blur $first-subtitle-shadow-color;
+            text-transform: $first-subtitle-text-transform;
+            line-height: $first-subtitle-line-height;
+            font-size: $first-subtitle-font-size;
+            margin-top: $first-subtitle-spacing;
+            color: $first-subtitle-color;
+          }
+
+          // Подзаголовок
+          &-date {
+            @include font.init($first-date-font-family, $first-date-font-weight);
+            text-transform: $first-date-text-transform;
+            line-height: $first-date-line-height;
+            font-size: $first-date-font-size;
+            margin-top: $first-date-spacing;
+            color: $first-date-color;
+          }
         }
       }
 
-      // Описание
-      &-desc {
-        @include font.init( $desc-font-family, $desc-font-weight );
-        text-transform: $desc-text-transform;
-        line-height: $desc-line-height;
-        font-size: $desc-font-size;
-        margin-top: $desc-spacing;
-        color: $desc-color;
-        text-align: center;
-
-        & > .sup {
-          @include line.clamp( 1, ( $sup-line-height ));
-          font-size: $sup-font-size;
-          display: inline-block; vertical-align: top;
+      // Блок с картинкой
+      &.image {
+        #{ $__selector } {
+          &-image {
+            max-width: $image-size;
+            max-height: $image-size;
+          }
         }
       }
 
-
-
-      // Статусы
-      & {
-
-        // Главный блок
-        &.first {
+      // Предложение
+      &.offer {
+        &_left,
+        &_right {
           #{ $__selector } {
+            @include flex.init(row, nowrap, center, center);
 
-            // Контейнер
-            &-container { @include flex.init( column, nowrap, center, flex-start ); }
-
-            // Логотип
-            &-logo { width: $logo-width; }
-
-            // Заголовок
             &-title {
-              @include font.init( $first-title-font-family, $first-title-font-weight );
-              text-shadow: $first-title-shadow-x $first-title-shadow-y $first-title-shadow-blur $first-title-shadow-color;
-              text-transform: $first-title-text-transform;
-              line-height: $first-title-line-height;
-              font-size: $first-title-font-size;
-              margin-top: $first-title-spacing;
-              color: $first-title-color;
+              @include font.include($offer-title-font-family, $offer-title-font-weight);
+              text-transform: $offer-title-text-transform;
+              line-height: $offer-title-line-height;
+              font-size: $offer-title-font-size;
+              color: $offer-title-color;
             }
-
-            // Подзаголовок
-            &-subtitle {
-              @include font.init( $first-subtitle-font-family, $first-subtitle-font-weight );
-              text-shadow: $first-subtitle-shadow-x $first-subtitle-shadow-y $first-subtitle-shadow-blur $first-subtitle-shadow-color;
-              text-transform: $first-subtitle-text-transform;
-              line-height: $first-subtitle-line-height;
-              font-size: $first-subtitle-font-size;
-              margin-top: $first-subtitle-spacing;
-              color: $first-subtitle-color;
+            &-container {
+              padding: $offer-padding;
             }
-
-            // Подзаголовок
-            &-date {
-              @include font.init( $first-date-font-family, $first-date-font-weight );
-              text-transform: $first-date-text-transform;
-              line-height: $first-date-line-height;
-              font-size: $first-date-font-size;
-              margin-top: $first-date-spacing;
-              color: $first-date-color;
+            &-image {
+              width: $offer-image-width;
             }
           }
         }
 
-        // Блок с картинкой
-        &.image {
+        &_left {
           #{ $__selector } {
-            &-image { max-width: $image-size; max-height: $image-size; }
+            &-offer-container {
+              @include flex.init(row-reverse, nowrap, space-between, flex-end);
+            }
+            &-container {
+              padding-right: $offer-padding-inner;
+            }
+            &-image {
+              margin-left: $offer-image-left-spacing;
+            }
+            &-title {
+              width: $offer-title-left-width;
+              text-align: right;
+            }
           }
         }
 
-        // Предложение
-        &.offer {
-
-          &_left, &_right {
-            #{ $__selector } {
-              @include flex.init( row, nowrap, center, center );
-
-              &-title {
-                @include font.include( $offer-title-font-family, $offer-title-font-weight );
-                text-transform: $offer-title-text-transform;
-                line-height: $offer-title-line-height;
-                font-size: $offer-title-font-size;
-                color: $offer-title-color;
-              }
-              &-container { padding: $offer-padding; }
-              &-image { width: $offer-image-width; }
+        &_right {
+          #{ $__selector } {
+            &-offer-container {
+              @include flex.init(row, nowrap, space-between, flex-end);
             }
-          }
-
-          &_left {
-            #{ $__selector } {
-              &-offer-container { @include flex.init( row-reverse, nowrap, space-between, flex-end ); }
-              &-container { padding-right: $offer-padding-inner; }
-              &-image { margin-left: $offer-image-left-spacing; }
-              &-title { width: $offer-title-left-width; text-align: right; }
+            &-container {
+              padding-left: $offer-padding-inner;
             }
-          }
-
-          &_right {
-            #{ $__selector } {
-              &-offer-container { @include flex.init( row, nowrap, space-between, flex-end ); }
-              &-container { padding-left: $offer-padding-inner; }
-              &-image { margin-right: $offer-image-right-spacing; }
-              &-title { width: $offer-title-right-width; text-align: left; }
+            &-image {
+              margin-right: $offer-image-right-spacing;
+            }
+            &-title {
+              width: $offer-title-right-width;
+              text-align: left;
             }
           }
         }
       }
+    }
 
-
-
-      // Цвета
-      & {
-        &.pink { background-color: $background-pink; }
-        &.green { background-color: $background-green; }
-        &.purple { background-color: $background-purple; }
-        &.orange { background-color: $background-orange; }
-        &.transparent {
-          background-color: $background-transparent;
-          &:before { content: none; }
+    // Цвета
+    & {
+      &.pink {
+        background-color: $background-pink;
+      }
+      &.green {
+        background-color: $background-green;
+      }
+      &.purple {
+        background-color: $background-purple;
+      }
+      &.orange {
+        background-color: $background-orange;
+      }
+      &.transparent {
+        background-color: $background-transparent;
+        &:before {
+          content: none;
         }
       }
     }
   }
-
-
-//------------------------------------------------------------------------------------------------------------
-// Стили
-//------------------------------------------------------------------------------------------------------------
+}

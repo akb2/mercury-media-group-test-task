@@ -1,201 +1,169 @@
-@use '../../styles/mixins/flex';
-@use '../../styles/mixins/font';
-@use '../../styles/mixins/line';
+@use "sass:math";
+@use "../../styles/mixins/flex";
+@use "../../styles/mixins/font";
+@use "../../styles/mixins/line";
 
+$columns: 3;
 
+$desc-col: 1;
+$desc-width: math.div(100%, $columns) * $desc-col;
+$desc-spacing-right: 40px;
 
+$form-col: $columns - $desc-col;
+$form-width: math.div(100%, $columns) * $form-col;
 
+$desc-title-font-family: MarkerFelt;
+$desc-title-font-weight: 400;
+$desc-title-font-size: 72px;
+$desc-title-line-height: 90px;
+$desc-title-text-transform: uppercase;
+$desc-title-color: #fff;
+$desc-title-shadow-x: 1px;
+$desc-title-shadow-y: 2px;
+$desc-title-shadow-blur: 0px;
+$desc-title-shadow-color: #421d4b;
 
-//------------------------------------------------------------------------------------------------------------
-// Данные
-//------------------------------------------------------------------------------------------------------------
+$desc-text-spacing: 22px;
+$desc-text-font-family: BebasNeue;
+$desc-text-font-weight: 400;
+$desc-text-font-size: 24px;
+$desc-text-line-height: 30px;
+$desc-text-text-transform: uppercase;
+$desc-text-color: #fff;
 
+$form-padding-x: 49px;
+$form-padding-y: 39px;
+$form-background: #a8c514;
+$form-color: #fff;
 
-  $columns: 3;
+$form-title-font-family: BebasNeue;
+$form-title-font-weight: bold;
+$form-title-font-size: 36px;
+$form-title-line-height: 44px;
+$form-title-text-transform: uppercase;
+$form-title-color: #fff;
 
-  $desc-col: 1;
-  $desc-width: ( 100% / $columns ) * $desc-col;
-  $desc-spacing-right: 40px;
+$form-answers-spacing: 40px;
+$form-buttons-spacing: $form-answers-spacing;
 
-  $form-col: $columns - $desc-col;
-  $form-width: ( 100% / $columns ) * $form-col;
+$form-button-font-family: BebasNeue;
+$form-button-font-weight: bold;
+$form-button-font-size: 36px;
+$form-button-line-height: 44px;
+$form-button-height: 60px;
+$form-button-padding-x: 90px;
+$form-button-padding-y: math.div($form-button-height - $form-button-line-height, 2);
+$form-button-background: #e8335e;
+$form-button-color: #fff;
 
+$answer-spacing: 33px;
 
+$result-spacing: 20px;
+$result-font-size: 24px;
+$result-line-height: 30px;
+$result-font-family: DinCondensed;
+$result-font-weight: 700;
+$result-image-size: 178px;
+$result-image-spacing: 25px;
 
-  $desc-title-font-family: MarkerFelt;
-  $desc-title-font-weight: 400;
-  $desc-title-font-size: 72px;
-  $desc-title-line-height: 90px;
-  $desc-title-text-transform: uppercase;
-  $desc-title-color: #fff;
-  $desc-title-shadow-x: 1px;
-  $desc-title-shadow-y: 2px;
-  $desc-title-shadow-blur: 0px;
-  $desc-title-shadow-color: #421d4b;
+@include font.include($desc-title-font-family, $desc-title-font-weight);
+@include font.include($desc-text-font-family, $desc-text-font-weight);
+@include font.include($form-title-font-family, $form-title-font-weight);
+@include font.include($form-button-font-family, $form-button-font-weight);
+@include font.include($result-font-family, $result-font-weight);
 
-  $desc-text-spacing: 22px;
-  $desc-text-font-family: BebasNeue;
-  $desc-text-font-weight: 400;
-  $desc-text-font-size: 24px;
-  $desc-text-line-height: 30px;
-  $desc-text-text-transform: uppercase;
-  $desc-text-color: #fff;
+// Общий блок всей формы
+.test {
+  @include flex.init(row, nowrap, flex-start, flex-start);
 
+  // Описание теста
+  &__desc {
+    padding-right: $desc-spacing-right;
+    width: $desc-width;
 
-
-  $form-padding-x: 49px;
-  $form-padding-y: 39px;
-  $form-background: #a8c514;
-  $form-color: #fff;
-
-  $form-title-font-family: BebasNeue;
-  $form-title-font-weight: bold;
-  $form-title-font-size: 36px;
-  $form-title-line-height: 44px;
-  $form-title-text-transform: uppercase;
-  $form-title-color: #fff;
-
-  $form-answers-spacing: 40px;
-  $form-buttons-spacing: $form-answers-spacing;
-
-  $form-button-font-family: BebasNeue;
-  $form-button-font-weight: bold;
-  $form-button-font-size: 36px;
-  $form-button-line-height: 44px;
-  $form-button-height: 60px;
-  $form-button-padding-x: 90px;
-  $form-button-padding-y: ( $form-button-height - $form-button-line-height ) / 2;
-  $form-button-background: #e8335e;
-  $form-button-color: #fff;
-
-
-
-  $answer-spacing: 33px;
-
-
-
-  $result-spacing: 20px;
-  $result-font-size: 24px;
-  $result-line-height: 30px;
-  $result-font-family: DinCondensed;
-  $result-font-weight: 700;
-  $result-image-size: 178px;
-  $result-image-spacing: 25px;
-
-
-
-  @include font.include( $desc-title-font-family, $desc-title-font-weight );
-  @include font.include( $desc-text-font-family, $desc-text-font-weight );
-  @include font.include( $form-title-font-family, $form-title-font-weight );
-  @include font.include( $form-button-font-family, $form-button-font-weight );
-  @include font.include( $result-font-family, $result-font-weight );
-
-
-//------------------------------------------------------------------------------------------------------------
-// Данные
-//------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-//------------------------------------------------------------------------------------------------------------
-// Стили
-//------------------------------------------------------------------------------------------------------------
-
-
-  // Общий блок всей формы
-  .test {
-    @include flex.init( row, nowrap, flex-start, flex-start );
-
-
-    // Описание теста
-    &__desc {
-      padding-right: $desc-spacing-right;
-      width: $desc-width;
-
-      &-title {
-        @include font.init( $desc-title-font-family, $desc-title-font-weight );
-        text-shadow: $desc-title-shadow-x $desc-title-shadow-y $desc-title-shadow-blur $desc-title-shadow-color;
-        text-transform: $desc-title-text-transform;
-        line-height: $desc-title-line-height;
-        font-size: $desc-title-font-size;
-        color: $desc-title-color;
-      }
-
-      &-desc {
-        @include font.init( $desc-text-font-family, $desc-text-font-weight );
-        text-transform: $desc-text-text-transform;
-        line-height: $desc-text-line-height;
-        font-size: $desc-text-font-size;
-        margin-top: $desc-text-spacing;
-        color: $desc-text-color;
-      }
+    &-title {
+      @include font.init($desc-title-font-family, $desc-title-font-weight);
+      text-shadow: $desc-title-shadow-x $desc-title-shadow-y $desc-title-shadow-blur $desc-title-shadow-color;
+      text-transform: $desc-title-text-transform;
+      line-height: $desc-title-line-height;
+      font-size: $desc-title-font-size;
+      color: $desc-title-color;
     }
 
-    // Форма теста
-    &__form {
-      padding: $form-padding-y $form-padding-x;
-      background-color: $form-background;
-      width: $form-width;
-      color: $form-color;
-
-      // Заголовок ( вопрос )
-      &-title {
-        @include font.init( $form-title-font-family, $form-title-font-weight );
-        text-transform: $form-title-text-transform;
-        line-height: $form-title-line-height;
-        font-size: $form-title-font-size;
-        color: $form-title-color;
-      }
-
-      // Список ответов
-      &-answers { margin-top: $form-answers-spacing; }
-
-      // Контейнер для кнопок
-      &-buttons {
-        margin-top: $form-buttons-spacing;
-
-        &-button {
-          @include font.init( $form-button-font-family, $form-button-font-weight );
-          @include line.clamp( 1, $form-button-line-height, $form-button-padding-y );
-          @include line.select( none );
-          background-color: $form-button-background;
-          padding-right: $form-button-padding-x;
-          padding-left: $form-button-padding-x;
-          font-size: $form-button-font-size;
-          color: $form-button-color;
-          display: inline-block; cursor: pointer; text-align: center;
-        }
-      }
-
-
-      // Результ тестирования
-      &-results {
-        @include flex.init( row, nowrap, space-between, flex-start );
-        margin-top: $result-spacing;
-
-        &-text {
-          @include font.init( $result-font-family, $result-font-weight );
-          width: calc( 100% - #{ $result-image-size + $result-image-spacing });
-          line-height: $result-line-height;
-          font-size: $result-font-size;
-        }
-
-        &-image { width: $result-image-size; }
-      }
+    &-desc {
+      @include font.init($desc-text-font-family, $desc-text-font-weight);
+      text-transform: $desc-text-text-transform;
+      line-height: $desc-text-line-height;
+      font-size: $desc-text-font-size;
+      margin-top: $desc-text-spacing;
+      color: $desc-text-color;
     }
   }
 
+  // Форма теста
+  &__form {
+    padding: $form-padding-y $form-padding-x;
+    background-color: $form-background;
+    width: $form-width;
+    color: $form-color;
 
-  // Список ответов
-  .test-answer {
-    &__item {
-      & + & { margin-top: $answer-spacing; }
+    // Заголовок ( вопрос )
+    &-title {
+      @include font.init($form-title-font-family, $form-title-font-weight);
+      text-transform: $form-title-text-transform;
+      line-height: $form-title-line-height;
+      font-size: $form-title-font-size;
+      color: $form-title-color;
+    }
+
+    // Список ответов
+    &-answers {
+      margin-top: $form-answers-spacing;
+    }
+
+    // Контейнер для кнопок
+    &-buttons {
+      margin-top: $form-buttons-spacing;
+
+      &-button {
+        @include font.init($form-button-font-family, $form-button-font-weight);
+        @include line.clamp(1, $form-button-line-height, $form-button-padding-y);
+        @include line.select(none);
+        background-color: $form-button-background;
+        padding-right: $form-button-padding-x;
+        padding-left: $form-button-padding-x;
+        font-size: $form-button-font-size;
+        color: $form-button-color;
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+
+    // Результ тестирования
+    &-results {
+      @include flex.init(row, nowrap, space-between, flex-start);
+      margin-top: $result-spacing;
+
+      &-text {
+        @include font.init($result-font-family, $result-font-weight);
+        width: calc(100% - #{$result-image-size + $result-image-spacing});
+        line-height: $result-line-height;
+        font-size: $result-font-size;
+      }
+
+      &-image {
+        width: $result-image-size;
+      }
     }
   }
+}
 
-
-//------------------------------------------------------------------------------------------------------------
-// Стили
-//------------------------------------------------------------------------------------------------------------
+// Список ответов
+.test-answer {
+  &__item {
+    & + & {
+      margin-top: $answer-spacing;
+    }
+  }
+}
